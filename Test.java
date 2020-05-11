@@ -40,9 +40,18 @@ public class Test {
             moneyPackage.remainMoney = BigDecimal.valueOf(100);
             moneyPackage.remainSize = 5;
 
+        if((moneyPackage.remainMoney.divide(BigDecimal.valueOf(moneyPackage.remainSize),3,BigDecimal.ROUND_HALF_UP)).compareTo(BigDecimal.valueOf(0.01)) == -1){
+            System.out.println("不能发红包，请修改红包数量或金额。");
+        }else {
+            System.out.println("红包总额："+moneyPackage.remainMoney+"元，第"+(i+1)+"个红包拆分情况：\t");
             while (moneyPackage.remainSize != 0) {
-                System.out.print(getRandomMoney(moneyPackage)  + "   ");
+                    System.out.print("第"+sum+++"人抢到："+getRandomMoney(moneyPackage)  + "元   ");
+                }
+            System.out.println("\n");
             }
+
+            System.out.println();
+        }
 
             System.out.println();
         }
@@ -51,5 +60,6 @@ public class Test {
     static class RedPackage {
         int    remainSize;
         BigDecimal remainMoney;
+        BigDecimal minMoney;
     }
 }
